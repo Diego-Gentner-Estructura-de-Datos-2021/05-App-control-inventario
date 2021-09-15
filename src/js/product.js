@@ -1,7 +1,7 @@
-export default class Product {
+export default class Producto {
 
     constructor(id, name, info) {
-        this._id = id;
+        this._id = Number(id);
         this._name = name;
         this._info = info;
     }
