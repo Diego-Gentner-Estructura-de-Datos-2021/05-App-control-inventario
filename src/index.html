@@ -2,17 +2,51 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="../img/icon.png">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>3H - Diego - Crear App para control un inventario</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="icon" type="image/png" href="../img/icon.png">
 </head>
 <body>
-    <h1>
-        Crear App para control un inventario
-    </h1>
-    <h2>Por Diego Alejandro Gentner Polanco</h2>
-    
-    <script src="./main.js" type="module"></script>
+    <h2 class="text-center my-5 titulo">App para control de inventario</h2>
+    <div class="container mt-5 p-5">
+        <center><legend class="mb-5">Creado por Diego Gentner - 3H - Estructura de Datos</legend></center>
+        <div id="contenido" class="row">
+            <div class="col-md-6 agregar-cita">
+                    <legend class="mb-4">Datos del producto</legend>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-lg-4 col-form-label">Id del Producto:</label>
+                        <div class="col-sm-8 col-lg-8">
+                            <input type="number" minlength="1" min="1" max="9999999999" maxlength="10" id="id" name="mascota" class="form-control" placeholder="Id numérico o código">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-lg-4 col-form-label">Nombre:</label>
+                        <div class="col-sm-8 col-lg-8">
+                            <input type="text" minlength="1" id="name" name="propietario" class="form-control"  placeholder="Nombre del Producto">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-lg-4 col-form-label">Información:</label>
+                        <div class="col-sm-8 col-lg-8">
+                            <textarea id="info" name="sintomas" class="form-control" placeholder="Información relevante acerca del producto"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                            <button type="" class="btn btn-success w-100 d-block">Agregar Producto</button>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                <h2 id="administra" class="mb-4">Administra tus Productos</h2>
+                <ul id="citas" class="list-group lista-citas"></ul>
+            </div>
+        </div> <!--.row-->
+    </div><!--.container-->
+
+    <script src="js/app.js"></script>
+
 </body>
 </html>
