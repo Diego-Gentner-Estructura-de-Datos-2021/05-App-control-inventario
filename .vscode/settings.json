@@ -1,0 +1,10 @@
+{
+    "[javascript]": {
+
+        "editor.autoClosingBrackets": "languageDefined"
+    },
+    "[typescript]": {
+
+        "editor.autoClosingBrackets": "languageDefined"
+    }
+}
