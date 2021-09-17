@@ -16,7 +16,7 @@ export default class Product {
     }
 
     getQuantity() {
-        return this._info;
+        return this._quantity;
     }
 
     getPrice() {
@@ -48,7 +48,7 @@ export default class Product {
         let price = inputPrice.value;
     
     
-        if (id == '' || name == '' || quantity == '' || price == '' || id == undefined || name == undefined || quantity == undefined || price == undefined) {    
+        if (id == '' || id < 1 || name == '' || quantity == '' || price == '' || id == undefined || name == undefined || quantity == undefined || price == undefined) {    
             return false;
         } else {
             return (new Product(id, name, quantity, price));

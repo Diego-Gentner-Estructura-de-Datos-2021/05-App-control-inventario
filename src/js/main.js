@@ -6,9 +6,13 @@ class App {
     constructor() {
     this._btnAdd = document.querySelector('#btnAdd');
     this._btnSearch = document.querySelector('#btnSearch');
+    this._btnDelete = document.querySelector('#btnDelete');
+    this._btnInvert = document.querySelector('#btnInvert');
     
     this._btnAdd.addEventListener('click', this.readForm);
     this._btnSearch.addEventListener('click', this.searchForm);
+    this._btnDelete.addEventListener('click', this.deleteForm);
+    this._btnInvert.addEventListener('click', this.deleteForm);
     
     this._list = new List();
     }
@@ -55,14 +59,18 @@ class App {
 
         let inputSearchId = document.querySelector('#idSearch');
 
-        if (inputSearchId === 5) {
-            
+        const search = this._list._searchItem(Number(inputSearchId.value));
+
+        if (search != false) {
+            Swal.fire(`Producto: ${search.getName()}`, `Codigo: ${search.getId()}, Cantidad: ${search.getQuantity()} kg, Precio: $${search.getPrice()}/kg`, 'success');
         } else {
-            Swal.fire('PRODUCTO INVÁLIDO', 'Prueba buscando con otro ID/CODIGO.', 'error')
+            Swal.fire('PRODUCTO INVÁLIDO', 'Prueba buscando con otro ID/CODIGO.', 'error');
         }
 
+    }
 
-
+    deleteForm = () => {
+        Swal.fire('ERROR', 'Botón sin función.', 'error');
     }
 
 }

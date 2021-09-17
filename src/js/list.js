@@ -10,7 +10,7 @@ export default class List {
         if (pos == true) {
                 return false;
         } else {
-            this._products.push(product);
+            this._products[product.getId() - 1] = (product);
             return true;
         }
     }
@@ -34,12 +34,16 @@ export default class List {
     }
 
     _searchItem(id) {
+        let answer = false;
         this._products.forEach(element => {
-            if (element.getId() === Number(id)) {
-                return element;
+
+            console.log(`${element.getId()} y ${Number(id)}`)
+
+            if (element.getId() == Number(id)) {
+                return answer = element;
             }
         });
-        return false;
+        return answer;
     }
 
     getProducts() {
