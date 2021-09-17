@@ -8,11 +8,13 @@ class App {
     this._btnSearch = document.querySelector('#btnSearch');
     this._btnDelete = document.querySelector('#btnDelete');
     this._btnInvert = document.querySelector('#btnInvert');
+    this._btnDeleteHistory = document.querySelector('#btnDeleteHistory');
     
     this._btnAdd.addEventListener('click', this.readForm);
     this._btnSearch.addEventListener('click', this.searchForm);
     this._btnDelete.addEventListener('click', this.deleteForm);
     this._btnInvert.addEventListener('click', this.deleteForm);
+    this._btnDeleteHistory.addEventListener('click', this.deleteSearchHistory);
     
     this._list = new List();
     }
@@ -71,6 +73,14 @@ class App {
 
     deleteForm = () => {
         Swal.fire('ERROR', 'Botón sin función.', 'error');
+    }
+
+    deleteSearchHistory = () => {
+        Swal.fire('Historial Borrado', '', 'success');
+        const elements = document.getElementsByClassName('searchResultsIndex');
+        while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+        }
     }
 
 }
