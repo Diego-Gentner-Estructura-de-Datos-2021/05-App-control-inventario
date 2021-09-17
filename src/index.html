@@ -16,7 +16,7 @@
         <center><legend class="mb-5">Creado por Diego Gentner - 3H - Estructura de Datos</legend></center>
         <div id="contenido" class="row">
             <div class="col-md-6 agregar-cita">
-                    <legend class="mb-4">Datos del producto</legend>
+                    <legend class="mb-4">Agregar / Insertar del producto</legend>
                     <div class="form-group row">
                         <label class="col-sm-4 col-lg-4 col-form-label">Id del Producto:</label>
                         <div class="col-sm-8 col-lg-8">
@@ -31,18 +31,65 @@
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-sm-4 col-lg-4 col-form-label">Información:</label>
+                        <label class="col-sm-4 col-lg-4 col-form-label">Cantidad:</label>
                         <div class="col-sm-8 col-lg-8">
-                            <textarea id="info" name="sintomas" class="form-control" placeholder="Información relevante acerca del producto"></textarea>
+                            <input type="number" minlength="1" min="1" max="9999999999" maxlength="10" id="quantity" name="mascota" class="form-control" placeholder="Cantidad en KG">
                         </div>
                     </div>
-                    <div class="form-group">
-                            <button id="btnAdd" type="submit" class="btn btn-success w-100 d-block">Agregar Producto</button>
+
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-lg-4 col-form-label">Precio:</label>
+                        <div class="col-sm-8 col-lg-8">
+                            <input type="number" minlength="1" min="1" max="9999999999" maxlength="10" id="price" name="mascota" class="form-control" placeholder="Precio en MXN">
+                        </div>
                     </div>
+
+                    <div class="form-group">
+                            <button id="btnAdd" type="submit" class="btn btn-success w-100 d-block">Agregar / Insertar Producto</button>
+                    </div>
+
+                    <!-- Busqueda de Producto -->
+
+                    <legend class="mb-4">Buscar Producto</legend>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-lg-4 col-form-label">Id del Producto:</label>
+                        <div class="col-sm-8 col-lg-8">
+                            <input type="number" minlength="1" min="1" max="9999999999" maxlength="10" id="idSearch" name="mascota" class="form-control" placeholder="Id numérico o código">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button id="btnSearch" type="submit" class="btn btn-success w-100 d-block">Buscar</button>
+                    </div>
+
+                    <!-- Eliminar Producto -->
+
+                    <legend class="mb-4">Eliminar Producto</legend>
+                    <div class="form-group row">
+                        <label class="col-sm-4 col-lg-4 col-form-label">Id del Producto:</label>
+                        <div class="col-sm-8 col-lg-8">
+                            <input type="number" minlength="1" min="1" max="9999999999" maxlength="10" id="idDelete" name="mascota" class="form-control" placeholder="Id numérico o código">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button id="btnDelete" type="submit" class="btn btn-success w-100 d-block">Eliminar</button>
+                    </div>
+
+
             </div>
             <div class="col-md-6">
                 <h2 id="administra" class="mb-4">Administra tus Productos</h2>
-                <ul id="citas" class="list-group lista-citas"></ul>
+                <div>
+                    <h2>Listado o tabla</h2>
+                      <table id="table">
+                        <center><tr>
+                          <th>Datos</th>
+                          <th>Botones</th>
+                        </tr></center>
+                      </table>
+              
+                  </div>
             </div>
         </div> <!--.row-->
     </div><!--.container-->

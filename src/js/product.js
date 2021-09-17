@@ -1,9 +1,10 @@
-export default class Producto {
+export default class Product {
 
-    constructor(id, name, info) {
-        this._id = Number(id);
+    constructor(id, name, quantity, price) {
+        this._id = Math.abs(Number(id));
         this._name = name;
-        this._info = info;
+        this._quantity = quantity;
+        this._price = price;
     }
 
     getId() {
@@ -14,46 +15,45 @@ export default class Producto {
         return this._name;
     }
 
-    getInfo() {
+    getQuantity() {
         return this._info;
     }
 
-    setId(id) {
-        this._id = id;
+    getPrice() {
+        return this._price;
     }
 
     setName(name) {
         this._name = name;
     }
 
-    setInfo(info) {
-        this._info = info;
+    setQuantity(quantity) {
+        this._quantity = quantity;
     }
 
-    toString() {
-        return `${this._id} ${this._name} ${this._info}`;
+    setPrice(price) {
+        this._price = price;
     }
 
     static readInfo() {
+
         let inputId = document.querySelector('#id');
         let inputName = document.querySelector('#name');
-        let inputInfo = document.querySelector('#info');
+        let inputQuantity = document.querySelector('#quantity');
+        let inputPrice = document.querySelector('#price');
 
-        let id = String(inputId.value);
+        let id = Number(inputId.value);
         let name = inputName.value;
-        let info = inputInfo.value;
+        let quantity = inputQuantity.value;
+        let price = inputPrice.value;
     
     
-        if (id == '' || name == '' || info == '') {    
+        if (id == '' || name == '' || quantity == '' || price == '' || id == undefined || name == undefined || quantity == undefined || price == undefined) {    
             return false;
         } else {
-            inputId.value= ''
-            inputName.value = ''
-            inputInfo.value = ''
-    
-            return (new Product(id, name, info));
+            return (new Product(id, name, quantity, price));
         }
-    
+
     }
 
 }
