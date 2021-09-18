@@ -13,7 +13,7 @@ class App {
     this._btnAdd.addEventListener('click', this.readForm);
     this._btnSearch.addEventListener('click', this.searchForm);
     this._btnDelete.addEventListener('click', this.deleteForm);
-    this._btnInvert.addEventListener('click', this.deleteForm);
+    this._btnInvert.addEventListener('click', this.invertList);
     this._btnDeleteHistory.addEventListener('click', this.deleteSearchHistory);
     
     this._list = new List();
@@ -39,18 +39,15 @@ class App {
 
         let addProduct = this._list.addProduct(product);
         
-        if(addProduct === false) {
+        if(addProduct === null) {
             Swal.fire('ERROR', 'Este ID de producto ya esta registrado.', 'error');
             console.log(this._list.getProducts());
             inputId.value = ''
             return;
         }
 
-        const elements = document.getElementsByClassName('productsIndex');
-        while(elements.length > 0){
-        elements[0].parentNode.removeChild(elements[0]);
-        }
-        
+        this.deleteProductList();
+
         Swal.fire('CORRECTO', 'El producto se ha añadido.', 'success');
         console.log(this._list.getProducts());
         inputId.value = ''
@@ -92,6 +89,25 @@ class App {
         while(elements.length > 0){
         elements[0].parentNode.removeChild(elements[0]);
         }
+    }
+
+    deleteProductList = () => {
+        const elements = document.getElementsByClassName('productsIndex');
+        while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+        }
+    }
+
+    invertList = () => {
+        this.deleteProductList();
+        if (this._list.getLever()) {
+            this._list.setLever(false);
+        } else {
+            this._list.setLever(true);
+        }
+
+        this._list.updateHtmlProducts();
+        return true;
     }
 
 }

@@ -4,12 +4,20 @@ export default class List {
         this._products = new Array();
         this._lever = false;
     }
+
+    setLever(boolean) {
+        this._lever = boolean;
+    }
+
+    getLever() {
+        return this._lever;
+    }
   
     addProduct(product) {
         let pos = this._validateDuplicate(product);
 
         if (pos == true) {
-                return false;
+                return null;
         } else {
             this._products[product.getId() - 1] = (product);
             return true;
