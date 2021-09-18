@@ -28,35 +28,42 @@ export default class List {
     _validateDuplicate(product) {
         let x = 0;
         let pos = false;
-        while (this._products.length > 0 && x < this._products.length && pos == false) {
 
-            if (this._products[x] != undefined) {
-                if (product.getId() === this._products[x].getId()) {
-                    pos = true;
-                    console.log('validation process...');
-                } else {
-                    pos = false;
-                    console.log('validation process...');
-                }
-            }    
-            
-            x++;
+        if (product != null || product != undefined) {
+            while (this._products.length > 0 && x < this._products.length && pos == false) {
 
-    }
+                if (this._products[x] != undefined) {
+                    if (product.getId() === this._products[x].getId()) {
+                        pos = true;
+                        console.log('validation process...');
+                    } else {
+                        pos = false;
+                        console.log('validation process...');
+                    }
+                }    
+                
+                x++;
+            }            
+        }
         return pos;
     }
 
-    _searchItem(id) {
+    _searchItem(id, typeOf) {
         let answer = false;
+
+
+
         this._products.forEach(element => {
-
-            console.log(`${element.getId()} y ${Number(id)}`)
-
-            if (element.getId() == Number(id)) {
-                return answer = element;
+            if (element != null || element != undefined) {
+                console.log(`${element.getId()} y ${Number(id)}`)
+                if (element.getId() == Number(id)) {
+                    return answer = element;
+                } 
             }
         });
-        this.updateSearchResults(id, answer);
+        if (typeOf != true) {
+            this.updateSearchResults(id, answer);   
+        }
         return answer;
     }
 
@@ -97,11 +104,11 @@ export default class List {
         } else {
             message = 'y no fue encontrado ❌'
         }
-         
+        
         block_to_insert = document.createElement( 'div' );
         block_to_insert.setAttribute('class', 'searchResultsIndex');
-        block_to_insert.innerHTML = `<h4 class"mb-2"> ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()} a las ${this.formatDate(time.getHours())}:${this.formatDate(time.getMinutes())} horas <br>Se busco el ID: ${id} ${message}</h4>`;
-         
+        block_to_insert.innerHTML = `<h4 class"mb-2"> ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()} a las ${this.formatDate(time.getHours())}:${this.formatDate(time.getMinutes())}:${this.formatDate(time.getSeconds())} horas <br>Se busco el ID: ${id} ${message}</h4>`;
+        
         container_block = document.getElementById('historialBusqueda');
         container_block.prepend(block_to_insert);
     }

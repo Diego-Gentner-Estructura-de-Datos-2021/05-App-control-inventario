@@ -64,7 +64,7 @@ class App {
 
         let inputSearchId = document.querySelector('#idSearch');
 
-        const search = this._list._searchItem(Number(inputSearchId.value));
+        const search = this._list._searchItem(Math.floor(Math.abs(Number(inputSearchId.value))));
 
         if (search != false || search != 0) {
             Swal.fire(`Producto: ${search.getName()}`, `ID: ${search.getId()}, Peso: ${search.getQuantity()} kg, Precio: $${search.getPrice()}/kg Total: $${search.getTotal()}`, 'success');
@@ -80,7 +80,43 @@ class App {
     }
 
     deleteForm = () => {
-        Swal.fire('ERROR', 'Botón sin función.', 'error');
+        
+        let inputDeleteId = document.querySelector('#idDelete');
+
+        const search = this._list._searchItem(Number(Math.floor(Math.abs(Number(inputDeleteId.value)))), true);
+
+        if (search != false || search != 0) {
+            Swal.fire({
+                title: `¿Quiéres borrar ${search.getName()}?`,
+                text: `ID: ${search.getId()}, Peso: ${search.getQuantity()} kg, Precio: $${search.getPrice()}/kg`,
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'BORRAR'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    
+                    this._list._products[Number(inputDeleteId.value) - 1] = null;
+                    console.log(this._list._products)
+
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+                this.deleteProductList();
+                this._list.updateHtmlProducts();
+              })
+        } else {
+            if (inputDeleteId.value <= 0 || inputDeleteId.value == 0) {
+                Swal.fire('ALTO', 'No puedes borrar IDs menores a 1 o nulos.', 'warning'); 
+            } else {
+                Swal.fire('PRODUCTO INVÁLIDO', 'Prueba buscando con otro ID/CODIGO.', 'warning');   
+            }
+        }
+
     }
 
     deleteSearchHistory = () => {

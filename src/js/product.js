@@ -1,7 +1,7 @@
 export default class Product {
 
     constructor(id, name, quantity, price) {
-        this._id = Math.abs(Number(id));
+        this._id = Math.floor(Math.abs(Number(id)));
         this._name = name;
         this._quantity = quantity;
         this._price = price;
