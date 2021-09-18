@@ -35,6 +35,10 @@ export default class Product {
         this._price = price;
     }
 
+    getTotal() {
+        return this.getPrice() * this.getQuantity();
+    }
+
     static readInfo() {
 
         let inputId = document.querySelector('#id');
@@ -48,7 +52,7 @@ export default class Product {
         let price = inputPrice.value;
     
     
-        if (id == '' || id < 1 || name == '' || quantity == '' || price == '' || id == undefined || name == undefined || quantity == undefined || price == undefined) {    
+        if (id == '' || id < 1 || id > 99999999 || name == '' || quantity == '' || price == '' || id == undefined || name == undefined || quantity == undefined || price == undefined) {    
             return false;
         } else {
             return (new Product(id, name, quantity, price));

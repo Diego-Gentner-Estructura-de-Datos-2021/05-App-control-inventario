@@ -1,12 +1,13 @@
 export default class List {
    
     constructor() {
-        this._products = new Array();  
+        this._products = new Array();
+        this._lever = false;
     }
   
     addProduct(product) {
         let pos = this._validateDuplicate(product);
-  
+
         if (pos == true) {
                 return false;
         } else {
@@ -20,17 +21,20 @@ export default class List {
         let x = 0;
         let pos = false;
         while (this._products.length > 0 && x < this._products.length && pos == false) {
-        
-            if (product.getId() === this._products[x].getId()) {
-            pos = true;
-            console.log('validation process...');
-        } else {
-            pos = false;
-            console.log('validation process...');
-        }
-        x++;
+
+            if (this._products[x] != undefined) {
+                if (product.getId() === this._products[x].getId()) {
+                    pos = true;
+                    console.log('validation process...');
+                } else {
+                    pos = false;
+                    console.log('validation process...');
+                }
+            }    
+            
+            x++;
+
     }
-        this.updateHtmlProducts();
         return pos;
     }
 
@@ -48,31 +52,47 @@ export default class List {
         return answer;
     }
 
-    updateHtmlProducts(array) {
+    updateHtmlProducts() {
         let block_to_insert;
         let container_block;
          
-        block_to_insert = document.createElement( 'div' );
-        block_to_insert.innerHTML = `This demo DIV block was inserted into the page using`;
-         
-        container_block = document.getElementById('productosAlmacenados');
-        container_block.appendChild(block_to_insert);
+        this._products.forEach(element => {
+            if (element != undefined) {
+                block_to_insert = document.createElement( 'div' );
+                block_to_insert.classList.add("productsIndex");
+                block_to_insert.classList.add("mb-2");
+                block_to_insert.innerHTML = `${element.getName()}, ID: ${element.getId()}, Peso: ${element.getQuantity()} kg, Precio: $${element.getPrice()}/kg Total: $${element.getTotal()}`;
+                 
+                container_block = document.getElementById('productosAlmacenados');
+                if (this._lever === false) {
+                    container_block.appendChild(block_to_insert);
+                } else {
+                    container_block.prepend(block_to_insert);
+                }
+            }
+        });
     }
 
-    updateSearchResults(id, answer) {
+    updateSearchResults(id, search) {
+
+        if (id == 0 || id < 1) {
+            return;
+        }
+
         let block_to_insert;
         let container_block;
         let time = new Date();
+        let message;
 
-        if (answer != false) {
-            answer = 'y fue encontrado ✔'
+        if (search != false) {
+            message = `y fue encontrado ✔<br>▶ ${search.getName()}, ID: ${search.getId()}, Peso: ${search.getQuantity()} kg, Precio: $${search.getPrice()}/kg Total: $${search.getTotal()}`
         } else {
-            answer = 'y no fue encontrado ❌'
+            message = 'y no fue encontrado ❌'
         }
          
         block_to_insert = document.createElement( 'div' );
         block_to_insert.setAttribute('class', 'searchResultsIndex');
-        block_to_insert.innerHTML = `<h4 class"mb-2"> ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()} a las ${this.formatDate(time.getHours())}:${this.formatDate(time.getMinutes())} horas <br>Se busco el ID: ${id} ${answer}</h4>`;
+        block_to_insert.innerHTML = `<h4 class"mb-2"> ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()} a las ${this.formatDate(time.getHours())}:${this.formatDate(time.getMinutes())} horas <br>Se busco el ID: ${id} ${message}</h4>`;
          
         container_block = document.getElementById('historialBusqueda');
         container_block.prepend(block_to_insert);

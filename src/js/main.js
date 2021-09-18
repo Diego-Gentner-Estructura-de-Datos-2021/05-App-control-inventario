@@ -46,12 +46,18 @@ class App {
             return;
         }
 
+        const elements = document.getElementsByClassName('productsIndex');
+        while(elements.length > 0){
+        elements[0].parentNode.removeChild(elements[0]);
+        }
+        
         Swal.fire('CORRECTO', 'El producto se ha añadido.', 'success');
         console.log(this._list.getProducts());
         inputId.value = ''
         inputName.value = ''        
         inputQuantity.value = ''
         inputPrice.value = ''
+        this._list.updateHtmlProducts();
         return;
 
     }
@@ -63,10 +69,15 @@ class App {
 
         const search = this._list._searchItem(Number(inputSearchId.value));
 
-        if (search != false) {
-            Swal.fire(`Producto: ${search.getName()}`, `Codigo: ${search.getId()}, Cantidad: ${search.getQuantity()} kg, Precio: $${search.getPrice()}/kg`, 'success');
+        if (search != false || search != 0) {
+            Swal.fire(`Producto: ${search.getName()}`, `ID: ${search.getId()}, Peso: ${search.getQuantity()} kg, Precio: $${search.getPrice()}/kg Total: $${search.getTotal()}`, 'success');
         } else {
-            Swal.fire('PRODUCTO INVÁLIDO', 'Prueba buscando con otro ID/CODIGO.', 'error');
+            if (inputSearchId.value <= 0 || inputSearchId.value == 0) {
+                console.log(search);
+                Swal.fire('ALTO', 'No puedes buscar IDs menores a 1 o nulos.', 'warning'); 
+            } else {
+                Swal.fire('PRODUCTO INVÁLIDO', 'Prueba buscando con otro ID/CODIGO.', 'error');   
+            }
         }
 
     }
