@@ -76,7 +76,7 @@ export default class List {
                 block_to_insert = document.createElement( 'div' );
                 block_to_insert.classList.add("productsIndex");
                 block_to_insert.classList.add("mb-2");
-                block_to_insert.innerHTML = `${element.getName()}, ID: ${element.getId()}, Peso: ${element.getQuantity()} kg, Precio: $${element.getPrice()}/kg Total: $${element.getTotal()}`;
+                block_to_insert.innerHTML = `ID: ${element.getId()}, ${element.getName()}, Peso: ${element.getQuantity()} kg, Precio: $${element.getPrice()}/kg Total: $${element.getTotal()}`;
                  
                 container_block = document.getElementById('productosAlmacenados');
                 if (this._lever === false) {
