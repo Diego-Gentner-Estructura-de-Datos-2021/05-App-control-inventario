@@ -107,7 +107,7 @@ export default class List {
         
         block_to_insert = document.createElement( 'div' );
         block_to_insert.setAttribute('class', 'searchResultsIndex');
-        block_to_insert.innerHTML = `<h4 class"mb-2"> ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()} a las ${this.formatDate(time.getHours())}:${this.formatDate(time.getMinutes())}:${this.formatDate(time.getSeconds())} horas <br>Se busco el ID: ${id} ${message}</h4>`;
+        block_to_insert.innerHTML = `<h5 class"mb-2"> ${time.getDate()}/${time.getMonth() + 1}/${time.getFullYear()} a las ${this.formatDate(time.getHours())}:${this.formatDate(time.getMinutes())}:${this.formatDate(time.getSeconds())} horas <br>Se busco el ID: ${id} ${message}</h5>`;
         
         container_block = document.getElementById('historialBusqueda');
         container_block.prepend(block_to_insert);

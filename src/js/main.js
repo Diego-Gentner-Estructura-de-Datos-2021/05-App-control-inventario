@@ -1,6 +1,8 @@
 import Product from './product.js';
 import List from './list.js';
 
+let max = 0;
+
 class App {
 
     constructor() {
@@ -37,6 +39,12 @@ class App {
             return;
         }
 
+        if (max >= 20) {
+            Swal.fire('ESPERA', 'Se alcanzó el máximo de productos admitidos.', 'info');
+            console.log(this._list.getProducts());
+            return;
+        }
+
         let addProduct = this._list.addProduct(product);
         
         if(addProduct === null) {
@@ -48,6 +56,9 @@ class App {
 
         this.deleteProductList();
 
+        max++;
+        console.log(`Productos Registrados: ${max}`);
+        
         Swal.fire('CORRECTO', 'El producto se ha añadido.', 'success');
         console.log(this._list.getProducts());
         inputId.value = ''
@@ -101,10 +112,12 @@ class App {
                     console.log(this._list._products)
 
                     Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
+                        '¡Borrado!',
+                        'Tu producto ha sido borrado.',
                         'success'
                     )
+                    max--;
+                    console.log(`Productos Registrados: ${max}`);
                 }
                 this.deleteProductList();
                 this._list.updateHtmlProducts();
