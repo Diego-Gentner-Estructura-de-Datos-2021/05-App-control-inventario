@@ -12,6 +12,8 @@
 
 ## Crear App para control un inventario
 
+### Demo: http://edd05.ultratale.net/
+
 **Instrucciones:** Crear una interfaz en HTML para manipular un INVENTARIO de productos, para almacenar la información debemos usar un vector (no usar BDs ni local storage) y limitarlo a máximo 20 productos.
 La información de cada producto debe permitir guardar el código, el nombre, cantidad y el costo, además como propiedad calcular el valor de mercancía que sería un valor calculado por la cantidad y el costo.
 
