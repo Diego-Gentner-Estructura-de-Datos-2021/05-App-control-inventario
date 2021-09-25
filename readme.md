@@ -1,5 +1,7 @@
 # Estructura de Datos
 
+### ESTE ES UN CÓDIGO LEGACY - PARA VER EL NUEVO VE A: https://redirect.ultratale.net/edd-gh-06
+##
 
 
 ### Profesor: Humberto Ramírez González
